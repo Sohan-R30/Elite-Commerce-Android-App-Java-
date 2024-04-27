@@ -11,6 +11,9 @@ import android.os.Looper;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class Splash_Screen_Activity extends AppCompatActivity {
 
     @Override

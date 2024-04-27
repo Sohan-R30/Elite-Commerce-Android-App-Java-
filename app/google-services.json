@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "907944127866",
+    "project_id": "elite-commerce-dc3cd",
+    "storage_bucket": "elite-commerce-dc3cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907944127866:android:760f87641379485873fac3",
+        "android_client_info": {
+          "package_name": "com.example.elitecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907944127866-gfgg89ig85m9fbndd6m3kia57rujqetr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCpoTHt9GReprYD2Ws4TEy1vWVulA9TOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907944127866-gfgg89ig85m9fbndd6m3kia57rujqetr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
