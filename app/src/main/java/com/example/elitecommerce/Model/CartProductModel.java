@@ -1,48 +1,113 @@
 package com.example.elitecommerce.Model;
 
 public class CartProductModel {
-    public int productImage;
-    public String productTitle,  productPrice, cartItemQuantity;
 
-    public void setProductImage(int productImage) {
+    private double productPrice, productRatings;
+            private int productReviews, productQuantity;
+   private String _id , productId, productImage, productTitle, productCategory, userEmail;
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public CartProductModel(String productId, String productImage, String productTitle, double productPrice, double productRatings, int productReviews, String productCategory, int productQuantity, String userEmail) {
+        this.productId = productId;
         this.productImage = productImage;
-    }
-
-    public void setProductTitle(String productTitle) {
         this.productTitle = productTitle;
+        this.productPrice = productPrice;
+        this.productRatings = productRatings;
+        this.productReviews = productReviews;
+        this.productCategory = productCategory;
+        this.productQuantity = productQuantity;
+        this.userEmail = userEmail;
     }
 
-    public void setProductPrice(String productPrice) {
+    public CartProductModel(String _id, String productId, String productImage, String productTitle, double productPrice, double productRatings, int productReviews, String productCategory, int productQuantity, String userEmail) {
+        this._id = _id;
+        this.productId = productId;
+        this.productImage = productImage;
+        this.productTitle = productTitle;
+        this.productPrice = productPrice;
+        this.productRatings = productRatings;
+        this.productReviews = productReviews;
+        this.productCategory = productCategory;
+        this.productQuantity = productQuantity;
+        this.userEmail = userEmail;
+    }
+
+    public double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
 
-    public void setCartItemQuantity(String cartItemQuantity) {
-        this.cartItemQuantity = cartItemQuantity;
+    public double getProductRatings() {
+        return productRatings;
     }
 
-    public int getProductImage() {
+    public void setProductRatings(double productRatings) {
+        this.productRatings = productRatings;
+    }
+
+    public int getProductReviews() {
+        return productReviews;
+    }
+
+    public void setProductReviews(int productReviews) {
+        this.productReviews = productReviews;
+    }
+
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getProductImage() {
         return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
     public String getProductTitle() {
         return productTitle;
     }
 
-    public String getProductPrice() {
-        return productPrice;
-    }
-
-    public String getCartItemQuantity() {
-        return cartItemQuantity;
-    }
-
-    public CartProductModel(int productImage, String productTitle, String productPrice, String cartItemQuantity) {
-        this.productImage = productImage;
+    public void setProductTitle(String productTitle) {
         this.productTitle = productTitle;
-        this.productPrice = productPrice;
-        this.cartItemQuantity = cartItemQuantity;
     }
 
-    public CartProductModel() {
+    public String getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(String productCategory) {
+        this.productCategory = productCategory;
     }
 }

@@ -68,7 +68,7 @@
             android:id="@+id/productImageCart"
             android:layout_width="match_parent"
             android:background="@android:color/transparent"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             app:cardCornerRadius="8dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
@@ -110,6 +110,7 @@
 
             <TextView
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
@@ -123,6 +124,27 @@
                 android:text="100"/>
         </LinearLayout>
 
+    <TextView
+        android:id="@+id/categorylbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Category : "
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reviesContainer" />
+
+    <TextView
+        android:id="@+id/productCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Shoes"
+        app:layout_constraintBottom_toBottomOf="@+id/categorylbl"
+        app:layout_constraintStart_toEndOf="@+id/categorylbl"
+        app:layout_constraintTop_toTopOf="@+id/categorylbl" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -133,10 +155,11 @@
         android:background="@drawable/input_shape_style"
         app:layout_constraintStart_toStartOf="parent">
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/applyFilterBtn"
+            android:id="@+id/addToCartBtn"
             android:layout_width="326dp"
             android:layout_height="50dp"
             android:text="Add to Cart"
+            android:layout_marginBottom="20dp"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/white"

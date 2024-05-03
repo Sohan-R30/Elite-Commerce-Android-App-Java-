@@ -12,6 +12,8 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.elitecommerce.databinding.ActivityLoginBinding;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -25,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         auth = FirebaseAuth.getInstance();
+
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
         {
@@ -77,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "Working on it", Toast.LENGTH_SHORT).show();
         });
     }
+
 
 
     private void loginEmailPassFunc(String email, String password)

@@ -1,6 +1,7 @@
 package com.example.elitecommerce.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.elitecommerce.Model.CartProductModel;
+import com.example.elitecommerce.ProductDetailsActivity;
 import com.example.elitecommerce.R;
+import com.example.elitecommerce.Services.RetrofitInstanceCart;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RecylerCartProductAdapter extends RecyclerView.Adapter<RecylerCartProductAdapter.CartViewHolder> {
 
@@ -44,11 +55,46 @@ public class RecylerCartProductAdapter extends RecyclerView.Adapter<RecylerCartP
     @Override
     public void onBindViewHolder(@NonNull RecylerCartProductAdapter.CartViewHolder holder, int position) {
         setAnimation(holder.itemView,position);
-        holder.productImage.setImageResource(productsList.get(position).productImage);
-        holder.productTitle.setText(productsList.get(position).productTitle);
-        holder.productPrice.setText(productsList.get(position).productPrice);
-        holder.cartItemQuantity.setText(productsList.get(position).cartItemQuantity);
 
+        Glide.with(context)
+                .load(productsList.get(position).getProductImage())
+                .into(holder.productImage);
+
+        holder.productTitle.setText(productsList.get(position).getProductTitle());
+        holder.productPrice.setText(String.valueOf(productsList.get(position).getProductPrice()));
+        holder.cartItemQuantity.setText(String.valueOf(productsList.get(position).getProductQuantity()));
+
+
+        holder.deleteIcon.setOnClickListener(v -> {
+
+            RetrofitInstanceCart.getInstance().cartsApi.deleteCarts(productsList.get(position).get_id().toString()).enqueue(new Callback<CartProductModel>() {
+
+                @Override
+                public void onResponse(Call<CartProductModel> call, Response<CartProductModel> response) {
+                    if (response.isSuccessful())
+                    {
+                        Toast.makeText(context, "Item Deleted From Cart" , Toast.LENGTH_SHORT).show();
+                        if (position >= 0 && position < productsList.size()) {
+                            productsList.remove(position);
+                            notifyItemRemoved(position);
+                            if (productsList.isEmpty()) {
+                                notifyDataSetChanged();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(context, "Item Not Deleted" , Toast.LENGTH_SHORT).show();
+                    }
+                    Log.d("my_data222", response.toString());
+                }
+
+                @Override
+                public void onFailure(Call<CartProductModel> call, Throwable t) {
+                    Toast.makeText(context, "Something Went Wrong!" , Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
         holder.cartItemQuantityIncrease.setOnClickListener(v -> {
             try {
                 String quantity = holder.cartItemQuantity.getText().toString();

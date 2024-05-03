@@ -13,7 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.elitecommerce.Model.ProductModel;
+import com.bumptech.glide.Glide;
+import com.example.elitecommerce.Model.ProductsModel;
 import com.example.elitecommerce.ProductDetailsActivity;
 import com.example.elitecommerce.R;
 
@@ -21,15 +22,15 @@ import java.util.ArrayList;
 
 public class RecyclerSearchProductAdapter extends RecyclerView.Adapter<RecyclerSearchProductAdapter.SearchProductViewHolder> {
 
-    ArrayList<ProductModel> productsList;
+    ArrayList<ProductsModel> productsList;
     Context context;
 
-    public RecyclerSearchProductAdapter(ArrayList<ProductModel> productsList, Context context) {
+    public RecyclerSearchProductAdapter(ArrayList<ProductsModel> productsList, Context context) {
         this.productsList = productsList;
         this.context = context;
     }
 
-    public void setFilteredList(ArrayList<ProductModel> filteredList)
+    public void setFilteredList(ArrayList<ProductsModel> filteredList)
     {
         this.productsList = filteredList;
         notifyDataSetChanged();
@@ -44,29 +45,38 @@ public class RecyclerSearchProductAdapter extends RecyclerView.Adapter<RecyclerS
     @Override
     public void onBindViewHolder(@NonNull RecyclerSearchProductAdapter.SearchProductViewHolder holder, int position) {
         setAnimation(holder.itemView,position);
-        holder.productImage.setImageResource(productsList.get(position).productImage);
-        holder.productTitle.setText(productsList.get(position).productTitle);
-        holder.productPrice.setText(productsList.get(position).productPrice);
-        holder.productRatings.setText(productsList.get(position).productRatings);
-        holder.productReviews.setText(productsList.get(position).productReviews);
+
+        Glide.with(context)
+                .load(productsList.get(position).getProductImage())
+                .into(holder.productImage);
+        holder.productTitle.setText(productsList.get(position).getProductTitle());
+        holder.productPrice.setText(String.valueOf(productsList.get(position).getProductPrice()));
+        holder.productRatings.setText(String.valueOf(productsList.get(position).getProductRatings()));
+        holder.productReviews.setText(String.valueOf(productsList.get(position).getProductReviews()));
 
         holder.threeIcon.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), ProductDetailsActivity.class);
-            intent.putExtra("productTitle",productsList.get(position).productTitle);
-            intent.putExtra("productPrice",productsList.get(position).productPrice);
-            intent.putExtra("productRatings",productsList.get(position).productRatings);
-            intent.putExtra("productReviews",productsList.get(position).productReviews);
-            intent.putExtra("productImage",productsList.get(position).productImage);
+            intent.putExtra("productTitle",productsList.get(position).getProductTitle());
+            intent.putExtra("productPrice",String.valueOf(productsList.get(position).getProductPrice()));
+            intent.putExtra("productRatings",String.valueOf(productsList.get(position).getProductRatings()));
+            intent.putExtra("productReviews",String.valueOf(productsList.get(position).getProductReviews()));
+            intent.putExtra("productImage",productsList.get(position).getProductImage());
+            intent.putExtra("productCategory",productsList.get(position).getProductCategory());
+            intent.putExtra("_id",productsList.get(position).get_id());
+            intent.putExtra("productQuantity","1");
             v.getContext().startActivity(intent);
         });
 
         holder.productImage.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), ProductDetailsActivity.class);
-            intent.putExtra("productTitle",productsList.get(position).productTitle);
-            intent.putExtra("productPrice",productsList.get(position).productPrice);
-            intent.putExtra("productRatings",productsList.get(position).productRatings);
-            intent.putExtra("productReviews",productsList.get(position).productReviews);
-            intent.putExtra("productImage",productsList.get(position).productImage);
+            intent.putExtra("productTitle",productsList.get(position).getProductTitle());
+            intent.putExtra("productPrice",String.valueOf(productsList.get(position).getProductPrice()));
+            intent.putExtra("productRatings",String.valueOf(productsList.get(position).getProductRatings()));
+            intent.putExtra("productReviews",String.valueOf(productsList.get(position).getProductReviews()));
+            intent.putExtra("productImage",productsList.get(position).getProductImage());
+            intent.putExtra("productCategory",productsList.get(position).getProductCategory());
+            intent.putExtra("_id",productsList.get(position).get_id());
+            intent.putExtra("productQuantity","1");
             v.getContext().startActivity(intent);
         });
 

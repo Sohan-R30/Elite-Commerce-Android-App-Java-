@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,13 +22,16 @@ import com.example.elitecommerce.Fragments.SearchFragment;
 import com.example.elitecommerce.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
+    BottomNavigationView btmngv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        btmngv = binding.bottomNavigationView;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -39,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
        replaceFragment(new HomeFragment(),true);
-
 
        binding.bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
            @Override
@@ -58,9 +61,11 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment( new ProfileFragment() , false);
             }
                return true;
+
            }
        });
     }
+
 
     private void replaceFragment(Fragment fragment, boolean isClicked)
     {
@@ -77,4 +82,5 @@ public class MainActivity extends AppCompatActivity {
 
         transaction.commit();
     }
+
 }

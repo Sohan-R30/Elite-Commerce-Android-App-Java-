@@ -25,14 +25,23 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/productCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Shoes"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/productImageCart"
+        app:layout_constraintTop_toBottomOf="@+id/productImageCart" />
+    <TextView
         android:layout_marginTop="5dp"
-        android:layout_marginStart="5dp"
         android:id="@+id/productTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TMA-2 HD Wireless"
-        app:layout_constraintStart_toStartOf="@+id/productImageCart"
-        app:layout_constraintTop_toBottomOf="@+id/productImageCart" />
+        app:layout_constraintStart_toStartOf="@+id/productCategory"
+        app:layout_constraintTop_toBottomOf="@+id/productCategory" />
 
     <LinearLayout
         android:id="@+id/titlePrice"

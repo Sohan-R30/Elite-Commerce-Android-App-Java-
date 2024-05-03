@@ -11,8 +11,15 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.elitecommerce.Model.UsersModel;
+import com.example.elitecommerce.Services.RetrofitInstanceUsers;
 import com.example.elitecommerce.databinding.ActivitySignUpBinding;
 import com.google.firebase.auth.FirebaseAuth;
+
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Sign_Up_Activity extends AppCompatActivity {
 
@@ -88,10 +95,31 @@ public class Sign_Up_Activity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
 
-                        Log.d("Create User", "Create User Successfully");
-                        Toast.makeText(Sign_Up_Activity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Sign_Up_Activity.this, LoginActivity.class));
-                        finish();
+
+                        RetrofitInstanceUsers.getInstance().usersApi.postUser(new UsersModel(email)).enqueue(new Callback<UsersModel>() {
+                            @Override
+                            public void onResponse(Call<UsersModel> call, Response<UsersModel> response) {
+
+                                if (response.isSuccessful())
+                                {
+                                        Toast.makeText(Sign_Up_Activity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(Sign_Up_Activity.this,LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                }
+                                else
+                                {
+                                    Log.d("my_data2", response.toString());
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<UsersModel> call, Throwable t) {
+                                Log.d("my_data3", t.getLocalizedMessage());
+                            }
+                        });
 
                     } else {
                         ActivitySignUpBinding bind = ActivitySignUpBinding.inflate(getLayoutInflater());
